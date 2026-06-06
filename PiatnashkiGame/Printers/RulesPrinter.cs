@@ -1,20 +1,19 @@
-﻿namespace PiatnashkiGame.Printers;
+﻿using PiatnashkiGame.Regulations;
+
+namespace PiatnashkiGame.Printers;
 
 static class RulesPrinter
 {
-    public static void ShowRules(string[] rules)
+    public static void ShowRules()
     {
         Console.Clear();
 
-        int count = 1;
+        var rules = new Rules();
 
-        Console.WriteLine("RULES\n");
-        foreach (string rule in rules)
+        for (int i = 0; i < RulesConstants.RulesCount; i++)
         {
-            Console.WriteLine(count + ". " + rule);
-            count++;
-            Thread.Sleep(TimeSpan.FromSeconds(0.3));
+            Console.WriteLine(i + 1 + ". " + rules.GetRules(i));
+            Thread.Sleep(200);
         }
-        Console.Write("\n");
     }
 }

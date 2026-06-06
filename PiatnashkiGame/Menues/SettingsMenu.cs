@@ -7,7 +7,7 @@ namespace PiatnashkiGame.Menues;
 
 internal class SettingsMenu
 {
-    public void SettingsGeneralMenu(Settings settings, SettingsStorage settingsManager)
+    public void SettingsGeneralMenu(Settings settings, SettingsStorage storage)
     {
         ConsoleKeyInfo keyInfo;
 
@@ -25,11 +25,11 @@ internal class SettingsMenu
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    ControlsMenu(settings, settingsManager);
+                    ControlsMenu(settings, storage);
                     break;
 
                 case ConsoleKey.D2:
-                    TimerMenu(settings, settingsManager);
+                    TimerMenu(settings, storage);
                     break;
 
                 case ConsoleKey.Escape:
@@ -43,7 +43,7 @@ internal class SettingsMenu
         }
     }
 
-    private void TimerMenu(Settings settings, SettingsStorage settingsManager)
+    private void TimerMenu(Settings settings, SettingsStorage storage)
     {
         ConsoleKeyInfo keyInfo;
 
@@ -66,13 +66,13 @@ internal class SettingsMenu
                 case ConsoleKey.D1:
                     Console.Clear();
                     settings.Time4x4 = InputHandler.ReadTimerInput();
-                    settingsManager.WriteSettingsFile(settings);
+                    storage.WriteSettingsToFile(settings);
                     break;
 
                 case ConsoleKey.D2:
                     Console.Clear();
                     settings.Time3x3 = InputHandler.ReadTimerInput();
-                    settingsManager.WriteSettingsFile(settings);
+                    storage.WriteSettingsToFile(settings);
                     break;
 
                 case ConsoleKey.Escape:
@@ -85,7 +85,7 @@ internal class SettingsMenu
         }
     }
 
-    private void ControlsMenu(Settings settings, SettingsStorage settingsManager)
+    private void ControlsMenu(Settings settings, SettingsStorage storage)
     {
         ConsoleKeyInfo keyInfo;
 
@@ -106,12 +106,12 @@ internal class SettingsMenu
             {
                 case ConsoleKey.D1:
                     settings.KeyControls = ControlsSettings.WASD;
-                    settingsManager.WriteSettingsFile(settings);
+                    storage.WriteSettingsToFile(settings);
                     break;
 
                 case ConsoleKey.D2:
                     settings.KeyControls = ControlsSettings.Arrows;
-                    settingsManager.WriteSettingsFile(settings);
+                    storage.WriteSettingsToFile(settings);
                     break;
 
                 case ConsoleKey.Escape:

@@ -64,7 +64,7 @@ internal class Game
 
                             Score score = new Score(playerName, stopwatch.Elapsed, mode);
 
-                            scoreStorage.WriteScoreFile(score);
+                            scoreStorage.WriteScoreToFile(score);
 
                             Console.Clear();
                             BoardPrinter.ShowBoard(board);

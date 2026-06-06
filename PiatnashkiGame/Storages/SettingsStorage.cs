@@ -38,21 +38,21 @@ internal class SettingsStorage
             }
             switch (parts[0])
             {
-                case "Controls":
+                case Constants.Controls:
                     if (Enum.TryParse(parts[1], true, out ControlsSettings controls))
                     {
                         settings.KeyControls = controls;
                     }
                     break;
 
-                case "Time4x4":
+                case Constants.Time4x4:
                     if (TimeSpan.TryParse(parts[1], out TimeSpan time))
                     {
                         settings.Time4x4 = time;
                     }
                     break;
 
-                case "Time3x3":
+                case Constants.Time3x3:
                     if (TimeSpan.TryParse(parts[1], out TimeSpan timer))
                     {
                         settings.Time3x3 = timer;
@@ -63,15 +63,15 @@ internal class SettingsStorage
         return settings;
     }
 
-    private string SettingsToString(Settings settings)
+    private string PrepareSettingsToWrite(Settings settings)
     {
         return "Controls=" + settings.KeyControls.ToString() + "\n" + "Time4x4=" +
             settings.Time4x4.ToString(@"hh\:mm\:ss") + "\n" + "Time3x3=" + 
                 settings.Time3x3.ToString(@"hh\:mm\:ss");
     }
 
-    public void WriteSettingsFile(Settings settings)
+    public void WriteSettingsToFile(Settings settings)
     {
-        safeFileHelper.Write(filePath, SettingsToString(settings) + "\n");
+        safeFileHelper.Write(filePath, PrepareSettingsToWrite(settings) + "\n");
     }
 }

@@ -16,14 +16,14 @@ internal class ScoreStorage
             "PiatnashkiGameScore", "Score");
     }
 
-    private string ScoreToString(Score score)
+    private string PrepareScoreToWrite(Score score)
     {
         return score.Name + ";" + score.Time.ToString(@"hh\:mm\:ss") + ";" + score.Mode.ToString();
     }
 
-    public void WriteScoreFile(Score score)
+    public void WriteScoreToFile(Score score)
     {
-        safeFileHelper.Append(filePath, ScoreToString(score) + "\n");
+        safeFileHelper.Append(filePath, PrepareScoreToWrite(score) + "\n");
     }
 
     public List<Score> ReadScoreFromFile()
