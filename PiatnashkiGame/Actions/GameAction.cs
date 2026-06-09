@@ -7,31 +7,36 @@ namespace PiatnashkiGame.Actions;
 internal abstract class GameAction
 {
     protected readonly Settings? settings;
-    protected readonly ScoreStorage? scoreStorage;
-    protected readonly SettingsStorage? settingsStorage;
+    protected readonly IScoreStorage? scoreStorage;
+    protected readonly ISettingsStorage? settingsStorage;
 
-    protected GameAction() { }
+    protected GameAction() {}
 
-    protected GameAction(Settings settings, ScoreStorage storage)
+    protected GameAction(Settings settings, IScoreStorage storage)
     {
         this.settings = settings;
-        this.scoreStorage = storage;
+        scoreStorage = storage;
     }
 
-    protected GameAction(ScoreStorage? storage)
+    protected GameAction(IScoreStorage? storage)
     {
-        this.scoreStorage = storage;
+        scoreStorage = storage;
     }
 
-    protected GameAction(Settings settings, SettingsStorage storage)
+    protected GameAction(Settings settings, ISettingsStorage storage)
     {
         this.settings = settings;
-        this.settingsStorage = storage;
+        settingsStorage = storage;
     }
 
-    public virtual Board? CreateBoard()
+    public Board CreateBoard3x3()
     {
-        return null;
+        return new Board(BoardConstants.Size3x3, BoardConstants.Size3x3);
+    }
+
+    public Board CreateBoard4x4()
+    {
+        return new Board(BoardConstants.Size4x4, BoardConstants.Size4x4);
     }
 
     public abstract void Execute();

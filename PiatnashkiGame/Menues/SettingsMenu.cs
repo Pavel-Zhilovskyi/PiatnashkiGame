@@ -7,7 +7,17 @@ namespace PiatnashkiGame.Menues;
 
 internal class SettingsMenu
 {
-    public void SettingsGeneralMenu(Settings settings, SettingsStorage storage)
+    private readonly Settings _settings;
+
+    private readonly ISettingsStorage _storage;
+
+    public SettingsMenu(Settings settings, ISettingsStorage storage)
+    {
+        _settings = settings;
+        _storage = storage;
+    }
+
+    public void Run()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -25,11 +35,11 @@ internal class SettingsMenu
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    ControlsMenu(settings, storage);
+                    ControlsMenu();
                     break;
 
                 case ConsoleKey.D2:
-                    TimerMenu(settings, storage);
+                    TimerMenu();
                     break;
 
                 case ConsoleKey.Escape:
@@ -43,7 +53,7 @@ internal class SettingsMenu
         }
     }
 
-    private void TimerMenu(Settings settings, SettingsStorage storage)
+    private void TimerMenu()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -55,8 +65,8 @@ internal class SettingsMenu
             Console.WriteLine("You can change the timer time, by choosing the needed option.\n");
             Console.WriteLine("1 - Set timer for Classic 4x4 game");
             Console.WriteLine("2 - Set timer for Fast 3x3 game\n");
-            Console.WriteLine("Current timer time for Classic game: " + settings.Time4x4.ToString());
-            Console.WriteLine("Current timer time for Fast game: " + settings.Time3x3.ToString() + "\n");
+            Console.WriteLine($"Current timer time for Classic game: {_settings.Time4x4}");
+            Console.WriteLine($"Current timer time for Fast game: {_settings.Time3x3}\n");
             Console.WriteLine("Esc - Quit timer settings");
 
             keyInfo = Console.ReadKey(true);
@@ -65,14 +75,14 @@ internal class SettingsMenu
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    settings.Time4x4 = InputHandler.ReadTimerInput();
-                    storage.WriteSettingsToFile(settings);
+                    _settings.Time4x4 = InputHandler.ReadTimerInput();
+                    SaveSettings();
                     break;
 
                 case ConsoleKey.D2:
                     Console.Clear();
-                    settings.Time3x3 = InputHandler.ReadTimerInput();
-                    storage.WriteSettingsToFile(settings);
+                    _settings.Time3x3 = InputHandler.ReadTimerInput();
+                    SaveSettings();
                     break;
 
                 case ConsoleKey.Escape:
@@ -85,7 +95,7 @@ internal class SettingsMenu
         }
     }
 
-    private void ControlsMenu(Settings settings, SettingsStorage storage)
+    private void ControlsMenu()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -97,7 +107,7 @@ internal class SettingsMenu
             Console.WriteLine("You can change the control keys, by choosing the needed option.");
             Console.WriteLine("1 - WASD");
             Console.WriteLine("2 - Arrows");
-            Console.WriteLine("Current controls: " + settings.KeyControls.ToString() + "\n");
+            Console.WriteLine($"Current controls: {_settings.KeyControls}\n");
             Console.WriteLine("Esc - Quit controls");
 
             keyInfo = Console.ReadKey(true);
@@ -105,13 +115,13 @@ internal class SettingsMenu
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    settings.KeyControls = ControlsSettings.WASD;
-                    storage.WriteSettingsToFile(settings);
+                    _settings.KeyControls = ControlsSettings.WASD;
+                    SaveSettings();
                     break;
 
                 case ConsoleKey.D2:
-                    settings.KeyControls = ControlsSettings.Arrows;
-                    storage.WriteSettingsToFile(settings);
+                    _settings.KeyControls = ControlsSettings.Arrows;
+                    SaveSettings();
                     break;
 
                 case ConsoleKey.Escape:
@@ -122,5 +132,10 @@ internal class SettingsMenu
                     break;
             }
         }
+    }
+
+    private void SaveSettings()
+    {
+        _storage.Save(_settings);
     }
 }

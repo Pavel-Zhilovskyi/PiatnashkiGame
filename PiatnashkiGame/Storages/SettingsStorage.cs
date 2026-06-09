@@ -4,9 +4,9 @@ using PiatnashkiGame.Options;
 
 namespace PiatnashkiGame.Storages;
 
-internal class SettingsStorage
+internal class SettingsStorage : ISettingsStorage
 {
-    private string filePath;
+    private readonly string filePath;
 
     private readonly SafeFileHelper safeFileHelper = new SafeFileHelper();
 
@@ -16,7 +16,7 @@ internal class SettingsStorage
             "PiatnashkiGameSettings", "Settings");
     }
 
-    public Settings LoadSettingsFromFile()
+    public Settings Load()
     {
         if (!safeFileHelper.IsExists(filePath))
         {
@@ -70,7 +70,7 @@ internal class SettingsStorage
                 settings.Time3x3.ToString(@"hh\:mm\:ss");
     }
 
-    public void WriteSettingsToFile(Settings settings)
+    public void Save(Settings settings)
     {
         safeFileHelper.Write(filePath, PrepareSettingsToWrite(settings) + "\n");
     }

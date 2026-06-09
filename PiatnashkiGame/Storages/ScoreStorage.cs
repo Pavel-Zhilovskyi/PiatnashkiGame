@@ -4,7 +4,7 @@ using PiatnashkiGame.Helpers;
 
 namespace PiatnashkiGame.Storages;
 
-internal class ScoreStorage
+internal class ScoreStorage : IScoreStorage
 {
     private string filePath;
 
@@ -21,12 +21,12 @@ internal class ScoreStorage
         return score.Name + ";" + score.Time.ToString(@"hh\:mm\:ss") + ";" + score.Mode.ToString();
     }
 
-    public void WriteScoreToFile(Score score)
+    public void Save(Score score)
     {
         safeFileHelper.Append(filePath, PrepareScoreToWrite(score) + "\n");
     }
 
-    public List<Score> ReadScoreFromFile()
+    public List<Score> Load()
     {
         if (!safeFileHelper.IsExists(filePath))
         {
@@ -66,7 +66,7 @@ internal class ScoreStorage
         return scores;
     }
 
-    public void ClearScoreboardFile()
+    public void Clear()
     {
         safeFileHelper.Clear(filePath);
     }

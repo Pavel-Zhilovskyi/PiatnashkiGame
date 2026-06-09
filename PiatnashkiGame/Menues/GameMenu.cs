@@ -2,10 +2,23 @@
 using PiatnashkiGame.Options;
 using PiatnashkiGame.Storages;
 
-namespace PiatnashkiGame;
+namespace PiatnashkiGame.Menues;
 class GameMenu
 {
-    public GameAction? RunMenu(Settings settings, ScoreStorage scoreStorage, SettingsStorage settingsStorage)
+    private Settings _settings;
+
+    private IScoreStorage _scoreStorage;
+
+    private ISettingsStorage _settingsStorage;
+
+    public GameMenu(Settings settings, IScoreStorage scoreStorage, ISettingsStorage settingsStorage)
+    {
+        _settings = settings;
+        _scoreStorage = scoreStorage;
+        _settingsStorage = settingsStorage;
+    }
+
+    public GameAction? Run()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -16,19 +29,19 @@ class GameMenu
         switch (keyInfo.Key)
         {
             case ConsoleKey.D1:
-                return new ClassicGameModeAction(settings, scoreStorage);
+                return new ClassicGameModeAction(_settings, _scoreStorage);
 
             case ConsoleKey.D2:
-                return new FastGameModeAction(settings, scoreStorage);
+                return new FastGameModeAction(_settings, _scoreStorage);
 
             case ConsoleKey.D3:
-                return new ScoreboardAction(scoreStorage);
+                return new ScoreboardAction(_scoreStorage);
 
             case ConsoleKey.D4:
                 return new RulesAction();
 
             case ConsoleKey.D5:
-                return new SettingsAction(settings, settingsStorage);
+                return new SettingsAction(_settings, _settingsStorage);
 
             case ConsoleKey.Escape:
                 Console.WriteLine("BYE!");

@@ -8,17 +8,12 @@ namespace PiatnashkiGame.Actions;
 
 internal class FastGameModeAction : GameAction
 {
-    public FastGameModeAction(Settings settings, ScoreStorage scoreStorage)
+    public FastGameModeAction(Settings settings, IScoreStorage scoreStorage)
         : base(settings, scoreStorage) {}
-
-    public override Board? CreateBoard()
-    {
-        return new Board(BoardConstants.Size3x3, BoardConstants.Size3x3);
-    }
 
     public override void Execute()
     {
         var game = new Game();
-        game.Run(CreateBoard()!, settings!, scoreStorage!, GameMode.FastGame);
+        game.Run(CreateBoard3x3(), settings!, scoreStorage!, GameMode.FastGame);
     }
 }

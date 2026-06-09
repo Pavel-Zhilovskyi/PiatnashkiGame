@@ -5,7 +5,14 @@ namespace PiatnashkiGame.Menues;
 
 internal class ScoreMenu
 {
-    public void ScoreboardMenu(ScoreStorage scoreStorage)
+    private readonly IScoreStorage _storage;
+
+    public ScoreMenu(IScoreStorage storage)
+    {
+        _storage = storage;
+    }
+
+    public void Run()
     {
         ConsoleKeyInfo keyInfo;
         Console.Clear();
@@ -21,12 +28,12 @@ internal class ScoreMenu
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    ScoreboardPrinter.ShowScoreboard(scoreStorage.ReadScoreFromFile());
+                    ScoreboardPrinter.ShowScoreboard(_storage.Load());
                     break;
 
                 case ConsoleKey.D2:
                     Console.Clear();
-                    scoreStorage.ClearScoreboardFile();
+                    _storage.Clear();
                     Console.WriteLine("You have successfully cleared the scoreboard!\n");
                     break;
 

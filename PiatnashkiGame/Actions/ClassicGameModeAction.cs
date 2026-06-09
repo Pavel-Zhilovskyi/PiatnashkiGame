@@ -8,17 +8,12 @@ namespace PiatnashkiGame.Actions;
 
 internal class ClassicGameModeAction : GameAction
 {
-    public ClassicGameModeAction(Settings settings, ScoreStorage scoreStorage)
+    public  ClassicGameModeAction(Settings settings, IScoreStorage scoreStorage)
         : base(settings, scoreStorage) {}
-
-    public override Board? CreateBoard()
-    {
-        return new Board(BoardConstants.Size4x4, BoardConstants.Size4x4);
-    }
 
     public override void Execute()
     {
         var game = new Game();
-        game.Run(CreateBoard()!, settings!, scoreStorage!, GameMode.Classic);
+        game.Run(CreateBoard4x4(), settings!, scoreStorage!, GameMode.Classic);
     }
 }

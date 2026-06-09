@@ -21,7 +21,7 @@ internal class Game
         isFirstMove = true;
     }
 
-    public void Run(Board board, Settings settings, ScoreStorage scoreStorage, GameMode mode)
+    public void Run(Board board, Settings settings, IScoreStorage scoreStorage, GameMode mode)
     {
         string playerName = InputHandler.ReadNameInput();
         ConsoleKeyInfo keyInfo;
@@ -64,7 +64,7 @@ internal class Game
 
                             Score score = new Score(playerName, stopwatch.Elapsed, mode);
 
-                            scoreStorage.WriteScoreToFile(score);
+                            scoreStorage.Save(score);
 
                             Console.Clear();
                             BoardPrinter.ShowBoard(board);

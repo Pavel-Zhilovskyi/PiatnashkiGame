@@ -5,12 +5,12 @@ namespace PiatnashkiGame.Actions;
 
 internal class ScoreboardAction : GameAction
 {
-    public ScoreboardAction(ScoreStorage scoreStorage)
+    public ScoreboardAction(IScoreStorage scoreStorage)
         : base(scoreStorage) {}
 
     public override void Execute()
     {
-        var scoreMenu = new ScoreMenu();
-        scoreMenu.ScoreboardMenu(scoreStorage!);
+        var scoreMenu = new ScoreMenu(scoreStorage!);
+        scoreMenu.Run();
     }
 }

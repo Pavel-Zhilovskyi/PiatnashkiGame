@@ -1,4 +1,5 @@
 ﻿using PiatnashkiGame.Storages;
+using PiatnashkiGame.Menues;
 
 namespace PiatnashkiGame;
 
@@ -6,14 +7,14 @@ class Program
 {
     static void Main()
     {
-        var scoreStorage = new ScoreStorage();
-        var settingsStorage = new SettingsStorage();
-        var settings = settingsStorage.LoadSettingsFromFile();
+        IScoreStorage scoreStorage = new ScoreStorage();
+        ISettingsStorage settignsStorage = new SettingsStorage();
+        var settings = settignsStorage.Load();
 
         while (true)
         {
-            var menu = new GameMenu();
-            var game = menu.RunMenu(settings, scoreStorage, settingsStorage);
+            var menu = new GameMenu(settings, scoreStorage, settignsStorage);
+            var game = menu.Run();
 
             if (game != null)
             {
