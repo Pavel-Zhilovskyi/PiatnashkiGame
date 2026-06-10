@@ -2,12 +2,16 @@
 
 namespace PiatnashkiGame.Actions;
 
-internal class ClassicBoardCreator : IBoardCreator
+internal class BoardCreator : IBoardCreator
 {
-    public Board CreateBoard() => new Board(4, 4);
-}
+    private readonly int _rows;
+    private readonly int _cols;
 
-internal class FastBoardCreator : IBoardCreator
-{
-    public Board CreateBoard() => new Board(3, 3);
+    public BoardCreator(int rows, int cols)
+    {
+        _rows = rows;
+        _cols = cols;
+    }
+
+    public Board CreateBoard() => new Board(_rows, _cols);
 }

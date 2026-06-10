@@ -11,8 +11,8 @@ class Program
         IScoreStorage scoreStorage = new ScoreStorage();
         ISettingsStorage settignsStorage = new SettingsStorage();
         var settings = settignsStorage.Load();
-        IBoardCreator classicBoardCreator = new ClassicBoardCreator();
-        IBoardCreator fastBoardCreator = new FastBoardCreator();
+        IBoardCreator classicBoardCreator = new BoardCreator(4, 4);
+        IBoardCreator fastBoardCreator = new BoardCreator(3, 3);
 
         while (true)
         {
