@@ -11,11 +11,17 @@ class GameMenu
 
     private ISettingsStorage _settingsStorage;
 
-    public GameMenu(Settings settings, IScoreStorage scoreStorage, ISettingsStorage settingsStorage)
+    private IBoardCreator _classicBoardCreator;
+    private IBoardCreator _fastBoardCreator;
+
+    public GameMenu(Settings settings, IScoreStorage scoreStorage, ISettingsStorage settingsStorage, 
+        IBoardCreator classicBoardCreator, IBoardCreator fastBoardCreator)
     {
         _settings = settings;
         _scoreStorage = scoreStorage;
         _settingsStorage = settingsStorage;
+        _classicBoardCreator = classicBoardCreator;
+        _fastBoardCreator = fastBoardCreator;
     }
 
     public GameAction? Run()
@@ -29,10 +35,10 @@ class GameMenu
         switch (keyInfo.Key)
         {
             case ConsoleKey.D1:
-                return new ClassicGameModeAction(_settings, _scoreStorage);
+                return new ClassicGameModeAction(_settings, _scoreStorage, _classicBoardCreator);
 
             case ConsoleKey.D2:
-                return new FastGameModeAction(_settings, _scoreStorage);
+                return new FastGameModeAction(_settings, _scoreStorage, _fastBoardCreator);
 
             case ConsoleKey.D3:
                 return new ScoreboardAction(_scoreStorage);
