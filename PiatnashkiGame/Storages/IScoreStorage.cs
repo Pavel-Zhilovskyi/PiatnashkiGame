@@ -2,7 +2,7 @@
 
 namespace PiatnashkiGame.Storages;
 
-internal interface IScoreStorage
+interface IScoreStorage
 {
     void Save(Score score);
 

@@ -1,9 +1,10 @@
 ﻿using PiatnashkiGame.Actions;
 using PiatnashkiGame.Options;
+using PiatnashkiGame.Printers;
 using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
-class GameMenu
+class GameMenu : IMenu
 {
     private Settings _settings;
 
@@ -26,9 +27,9 @@ class GameMenu
 
     public GameAction? Run()
     {
-        ConsoleKeyInfo keyInfo;
+        MenuPrinter.PrintGameMenu();
 
-        PrintRunMenuText();
+        ConsoleKeyInfo keyInfo;
 
         keyInfo = Console.ReadKey(true);
 
@@ -59,17 +60,5 @@ class GameMenu
                 Console.Clear();
                 return null;
         }
-    }
-
-    private void PrintRunMenuText()
-    {
-        Console.WriteLine("Fifteen Puzzle\n");
-        Console.WriteLine("1 - Play (4x4 board)");
-        Console.WriteLine("2 - Fast game (3x3 board)");
-        Console.WriteLine("3 - Scoreboard");
-        Console.WriteLine("4 - See rules");
-        Console.WriteLine("5 - Settings");
-        Console.WriteLine("Esc - Exit");
-        Console.WriteLine("Press the key to choose.\n");
     }
 }

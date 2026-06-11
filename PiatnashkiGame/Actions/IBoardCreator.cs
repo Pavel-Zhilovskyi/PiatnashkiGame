@@ -2,7 +2,7 @@
 
 namespace PiatnashkiGame.Actions;
 
-interface IBoardCreator
+public interface IBoardCreator
 {
     Board CreateBoard();
 }

@@ -2,7 +2,7 @@
 
 namespace PiatnashkiGame.Field;
 
-internal class Board
+public class Board
 {
     private readonly int[,] solvedBoard;
 

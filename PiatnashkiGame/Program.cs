@@ -11,12 +11,12 @@ class Program
         IScoreStorage scoreStorage = new ScoreStorage();
         ISettingsStorage settignsStorage = new SettingsStorage();
         var settings = settignsStorage.Load();
-        IBoardCreator classicBoardCreator = new BoardCreator(4, 4);
-        IBoardCreator fastBoardCreator = new BoardCreator(3, 3);
+        IBoardCreator classicBoardCreator = new BoardCreator(BoardConstants.Size4x4, BoardConstants.Size4x4);
+        IBoardCreator fastBoardCreator = new BoardCreator(BoardConstants.Size3x3, BoardConstants.Size3x3);
+        IMenu menu = new GameMenu(settings, scoreStorage, settignsStorage, classicBoardCreator, fastBoardCreator);
 
         while (true)
         {
-            var menu = new GameMenu(settings, scoreStorage, settignsStorage, classicBoardCreator, fastBoardCreator);
             var game = menu.Run();
 
             if (game != null)

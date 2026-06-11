@@ -2,7 +2,7 @@
 
 namespace PiatnashkiGame.Storages;
 
-internal interface ISettingsStorage
+interface ISettingsStorage
 {
     Settings Load();
 
