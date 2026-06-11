@@ -49,4 +49,11 @@ static class MenuPrinter
         Console.WriteLine($"Current controls: {currentControls}\n");
         Console.WriteLine("Esc - Quit controls");
     }
+
+    public static void PrintScoreMenu()
+    {
+        Console.WriteLine("1 - Show scoreboard");
+        Console.WriteLine("2 - Clear scoreboard");
+        Console.WriteLine("Esc - Quit scoreboard menu");
+    }
 }

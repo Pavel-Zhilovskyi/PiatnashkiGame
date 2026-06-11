@@ -3,7 +3,7 @@ using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
 
-internal class ScoreMenu
+internal class ScoreMenu : IScoreMenu
 {
     private readonly IScoreStorage _storage;
 
@@ -19,9 +19,7 @@ internal class ScoreMenu
 
         do
         {
-            Console.WriteLine("1 - Show scoreboard");
-            Console.WriteLine("2 - Clear scoreboard");
-            Console.WriteLine("Esc - Quit scoreboard menu");
+            MenuPrinter.PrintScoreMenu();
 
             keyInfo = Console.ReadKey(true);
 

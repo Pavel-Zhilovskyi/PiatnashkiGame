@@ -10,7 +10,7 @@ internal class ScoreboardAction : GameAction
 
     public override void Execute()
     {
-        var scoreMenu = new ScoreMenu(scoreStorage!);
+        IScoreMenu scoreMenu = new ScoreMenu(scoreStorage!);
         scoreMenu.Run();
     }
 }
