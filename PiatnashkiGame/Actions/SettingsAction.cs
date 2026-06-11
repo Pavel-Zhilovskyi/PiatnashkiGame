@@ -11,7 +11,7 @@ internal class SettingsAction : GameAction
 
     public override void Execute()
     {
-        var settingsMenu = new SettingsMenu(settings!, settingsStorage!);
+        ISettingsMenu settingsMenu = new SettingsMenu(settings!, settingsStorage!);
         settingsMenu.Run();
     }
 }

@@ -1,11 +1,12 @@
 ﻿using PiatnashkiGame.Enums;
 using PiatnashkiGame.Handler;
 using PiatnashkiGame.Options;
+using PiatnashkiGame.Printers;
 using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
 
-internal class SettingsMenu
+internal class SettingsMenu : ISettingsMenu
 {
     private readonly Settings _settings;
 
@@ -25,10 +26,7 @@ internal class SettingsMenu
         {
             Console.Clear();
 
-            Console.WriteLine("SETTINGS\n");
-            Console.WriteLine("1 - Controls");
-            Console.WriteLine("2 - Timer settings");
-            Console.WriteLine("Esc - Quit settings");
+            MenuPrinter.PrintSettingsMenu();
 
             keyInfo = Console.ReadKey(true);
 
@@ -53,7 +51,7 @@ internal class SettingsMenu
         }
     }
 
-    private void TimerMenu()
+    public void TimerMenu()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -61,13 +59,7 @@ internal class SettingsMenu
         {
             Console.Clear();
 
-            Console.WriteLine("TIMER\n");
-            Console.WriteLine("You can change the timer time, by choosing the needed option.\n");
-            Console.WriteLine("1 - Set timer for Classic 4x4 game");
-            Console.WriteLine("2 - Set timer for Fast 3x3 game\n");
-            Console.WriteLine($"Current timer time for Classic game: {_settings.Time4x4}");
-            Console.WriteLine($"Current timer time for Fast game: {_settings.Time3x3}\n");
-            Console.WriteLine("Esc - Quit timer settings");
+            MenuPrinter.PrintTimerMenu(_settings.Time4x4, _settings.Time3x3);
 
             keyInfo = Console.ReadKey(true);
 
@@ -95,7 +87,7 @@ internal class SettingsMenu
         }
     }
 
-    private void ControlsMenu()
+    public void ControlsMenu()
     {
         ConsoleKeyInfo keyInfo;
 
@@ -103,12 +95,7 @@ internal class SettingsMenu
         {
             Console.Clear();
 
-            Console.WriteLine("CONTROLS\n");
-            Console.WriteLine("You can change the control keys, by choosing the needed option.");
-            Console.WriteLine("1 - WASD");
-            Console.WriteLine("2 - Arrows");
-            Console.WriteLine($"Current controls: {_settings.KeyControls}\n");
-            Console.WriteLine("Esc - Quit controls");
+            MenuPrinter.PrintControlsMenu(_settings.KeyControls.ToString());
 
             keyInfo = Console.ReadKey(true);
 

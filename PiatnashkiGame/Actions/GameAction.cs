@@ -1,4 +1,5 @@
-﻿using PiatnashkiGame.Options;
+﻿using PiatnashkiGame.Menues;
+using PiatnashkiGame.Options;
 using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Actions;
@@ -8,6 +9,7 @@ internal abstract class GameAction
     protected readonly Settings? settings;
     protected readonly IScoreStorage? scoreStorage;
     protected readonly ISettingsStorage? settingsStorage;
+    protected readonly ISettingsMenu? settingsMenu;
 
     protected GameAction() {}
 
