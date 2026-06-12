@@ -1,4 +1,4 @@
-﻿namespace PiatnashkiGame;
+﻿namespace PiatnashkiGame.Menues;
 
 interface IScoreMenu
 {

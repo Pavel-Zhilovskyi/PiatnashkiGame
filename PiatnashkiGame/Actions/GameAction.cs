@@ -9,7 +9,6 @@ internal abstract class GameAction
     protected readonly Settings? settings;
     protected readonly IScoreStorage? scoreStorage;
     protected readonly ISettingsStorage? settingsStorage;
-    protected readonly ISettingsMenu? settingsMenu;
 
     protected GameAction() {}
 

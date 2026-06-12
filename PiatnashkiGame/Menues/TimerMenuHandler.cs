@@ -1,16 +1,20 @@
 ﻿using PiatnashkiGame.Printers;
+using PiatnashkiGame.Options;
+using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
 
-internal class SettingsMenu : ISettingsMenu
+internal class TimerMenuHandler : ITimerOptions
 {
-    private readonly IControlsOptions _controlsOption;
-    private readonly ITimerOptions _timerOption;
+    private readonly Settings _settings;
+    private readonly ITimerChangeble _timer4x4;
+    private readonly ITimerChangeble _timer3x3;
 
-    public SettingsMenu(IControlsOptions controlsOption, ITimerOptions timerOption)
+    public TimerMenuHandler(Settings settings, ITimerChangeble timer4x4, ITimerChangeble timer3x3)
     {
-        _controlsOption = controlsOption;
-        _timerOption = timerOption;
+        _settings = settings;
+        _timer4x4 = timer4x4;
+        _timer3x3 = timer3x3;
     }
 
     public void Run()
@@ -20,19 +24,24 @@ internal class SettingsMenu : ISettingsMenu
         while (true)
         {
             Console.Clear();
-            MenuPrinter.PrintSettingsMenu();
+
+            MenuPrinter.PrintTimerMenu(_settings.Time4x4, _settings.Time3x3);
+
             keyInfo = Console.ReadKey(true);
 
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    _controlsOption.Run();
+                    _timer4x4.ChangeTimer();
                     break;
+
                 case ConsoleKey.D2:
-                    _timerOption.Run();
+                    _timer3x3.ChangeTimer();
                     break;
+
                 case ConsoleKey.Escape:
                     return;
+
                 default:
                     Console.Beep();
                     break;

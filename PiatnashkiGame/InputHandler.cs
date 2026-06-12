@@ -24,7 +24,10 @@ internal class InputHandler
 
     public static TimeSpan ReadTimerInput()
     {
+        Console.Clear();
+
         string time;
+
         do
         {
             Console.WriteLine("Enter the time (hh:mm:ss)");
