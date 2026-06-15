@@ -9,6 +9,6 @@ internal class RulesAction : GameAction
 
     public override void Execute()
     {
-        RulesPrinter.ShowRules();
+        RulesPrinter.PrintRules();
     }
 }

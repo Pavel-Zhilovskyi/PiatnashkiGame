@@ -68,7 +68,7 @@ internal class Game
 
                             Console.Clear();
                             BoardPrinter.ShowBoard(board);
-                            GameResultPrinter.PrintGameResult(GameResult.Win, stopwatch.Elapsed, movesCount);
+                            GameResultPrinter.PrintGameWinMessage(stopwatch.Elapsed, movesCount);
                             return;
                         }
                     }
@@ -80,7 +80,7 @@ internal class Game
             }
             Thread.Sleep(30);
         }
-        GameResultPrinter.PrintGameResult(GameResult.Timeout);
+        GameResultPrinter.PrintTimeOutMessage();
     }
 
     private void InreaseMovesCount()
@@ -96,6 +96,6 @@ internal class Game
     private static void HandleGiveUp(Stopwatch stopwatch)
     {
         stopwatch.Stop();
-        GameResultPrinter.PrintGameResult(GameResult.GiveUp);
+        GameResultPrinter.PrintGiveUpMessage();
     }
 }

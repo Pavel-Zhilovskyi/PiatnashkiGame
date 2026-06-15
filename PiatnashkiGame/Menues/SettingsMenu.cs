@@ -28,11 +28,15 @@ internal class SettingsMenu : ISettingsMenu
                 case ConsoleKey.D1:
                     _controlsOption.Run();
                     break;
+
                 case ConsoleKey.D2:
                     _timerOption.Run();
                     break;
+
                 case ConsoleKey.Escape:
+                    Console.Clear();
                     return;
+
                 default:
                     Console.Beep();
                     break;

@@ -4,7 +4,7 @@ namespace PiatnashkiGame.Printers;
 
 static class RulesPrinter
 {
-    public static void ShowRules()
+    public static void PrintRules()
     {
         Console.Clear();
 

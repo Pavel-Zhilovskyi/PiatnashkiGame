@@ -3,7 +3,7 @@
 namespace PiatnashkiGame.Printers;
 static class ScoreboardPrinter
 {
-    static public void ShowScoreboard(List<Score> scores)
+    static public void PrintScoreboard(List<Score> scores)
     {
         Console.Clear();
 

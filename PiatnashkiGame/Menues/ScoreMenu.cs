@@ -26,7 +26,7 @@ internal class ScoreMenu : IScoreMenu
             switch (keyInfo.Key)
             {
                 case ConsoleKey.D1:
-                    ScoreboardPrinter.ShowScoreboard(_storage.Load());
+                    ScoreboardPrinter.PrintScoreboard(_storage.Load());
                     break;
 
                 case ConsoleKey.D2:

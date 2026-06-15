@@ -4,24 +4,21 @@ namespace PiatnashkiGame.Printers;
 
 static class GameResultPrinter
 {
-    public static void PrintGameResult(GameResult result, TimeSpan time = default, int movesCount = 0)
+    public static void PrintGameWinMessage(TimeSpan time, int movesCount)
     {
-        switch(result)
-        {
-            case GameResult.Win:
-                Console.WriteLine("You have successfully completed the board!\n");
-                Console.WriteLine("Time: " + time.ToString(@"hh\:mm\:ss"));
-                Console.WriteLine("Moves: " + movesCount + "\n");
-                break;
+        Console.WriteLine("You have successfully completed the board!\n");
+        Console.WriteLine("Time: " + time.ToString(@"hh\:mm\:ss"));
+        Console.WriteLine("Moves: " + movesCount + "\n");
+    }
 
-            case GameResult.GiveUp:
-                Console.Clear();
-                Console.WriteLine("\nYou decided to give up!\n");
-                break;
+    public static void PrintGiveUpMessage()
+    {
+        Console.Clear();
+        Console.WriteLine("\nYou decided to give up!\n");
+    }
 
-            case GameResult.Timeout:
-                Console.WriteLine("\nTime is out!\n");
-                break;
-        }
+    public static void PrintTimeOutMessage()
+    {
+        Console.WriteLine("\nTime is out!\n");
     }
 }

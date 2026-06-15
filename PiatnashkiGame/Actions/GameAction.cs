@@ -1,5 +1,4 @@
-﻿using PiatnashkiGame.Menues;
-using PiatnashkiGame.Options;
+﻿using PiatnashkiGame.Options;
 using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Actions;
