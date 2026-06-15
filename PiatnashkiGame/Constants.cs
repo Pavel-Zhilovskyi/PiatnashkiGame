@@ -17,3 +17,9 @@ public static class RulesConstants
 {
     public const int RulesCount = 11;
 }
+
+public static class InputHandlerConstants
+{
+    public const int TimeInputLength = 8;
+    public const string InvalidNameSeparator = ";";
+}

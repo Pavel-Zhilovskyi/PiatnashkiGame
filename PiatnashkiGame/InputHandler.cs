@@ -5,20 +5,22 @@ internal class InputHandler
     public static string ReadNameInput()
     {
         string name;
+
         do
         {
             Console.Write("Enter your nickname: ");
             name = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(name) || name.Contains(';'))
+            if (string.IsNullOrWhiteSpace(name) || name.Contains(InputHandlerConstants.InvalidNameSeparator))
             {
-                Console.WriteLine("\nEnter your valid nickname!");
+                Console.WriteLine("\nEnter a valid nickname!");
             }
             else
             {
                 break;
             }
         } while (true);
+
         return name;
     }
 
@@ -33,7 +35,7 @@ internal class InputHandler
             Console.WriteLine("Enter the time (hh:mm:ss)");
             time = Console.ReadLine();
 
-            if (TimeSpan.TryParse(time, out TimeSpan result) && time.Length == 8)
+            if (TimeSpan.TryParse(time, out TimeSpan result) && time.Length == InputHandlerConstants.TimeInputLength)
             {
                 return result;
             }

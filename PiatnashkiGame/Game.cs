@@ -48,8 +48,10 @@ internal class Game
                 Direction? direction = KeyInputConverter.ConvertKey(keyInfo, settings);
 
                 if (direction != null) {
-                    if (board.MoveEmptyTile(direction))
+                    if (board.CanMove(direction))
                     {
+                        board.MoveEmptyTile(direction);
+                        
                         if (isFirstMove)
                         {
                             stopwatch.Start();

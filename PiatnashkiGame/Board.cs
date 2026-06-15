@@ -116,7 +116,7 @@ public class Board
         }
     }
         
-    private bool CanMove(Direction? direction)
+    public bool CanMove(Direction? direction)
     {
         if ((direction == Direction.Up && emptyRow > 0) ||
             (direction == Direction.Down && emptyRow >= 0 && emptyRow < Rows - 1) ||
@@ -128,42 +128,36 @@ public class Board
         return false;
     }
 
-    public bool MoveEmptyTile(Direction? direction)
+    public void MoveEmptyTile(Direction? direction)
     {
-        if (CanMove(direction))
+        if (direction == Direction.Up)
         {
-            if (direction == Direction.Up)
-            {
-                (board[emptyRow, emptyCol], board[emptyRow - 1, emptyCol]) =
-                    (board[emptyRow - 1, emptyCol], board[emptyRow, emptyCol]);
+            (board[emptyRow, emptyCol], board[emptyRow - 1, emptyCol]) =
+                (board[emptyRow - 1, emptyCol], board[emptyRow, emptyCol]);
 
-                emptyRow--;
-            }
-            else if (direction == Direction.Down)
-            {
-                (board[emptyRow, emptyCol], board[emptyRow + 1, emptyCol]) =
-                    (board[emptyRow + 1, emptyCol], board[emptyRow, emptyCol]);
-
-                emptyRow++;
-            }
-            else if (direction == Direction.Left)
-            {
-                (board[emptyRow, emptyCol], board[emptyRow, emptyCol - 1]) =
-                    (board[emptyRow, emptyCol - 1], board[emptyRow, emptyCol]);
-
-                emptyCol--;
-            }
-            else if (direction == Direction.Right)
-            {
-                (board[emptyRow, emptyCol], board[emptyRow, emptyCol + 1]) =
-                    (board[emptyRow, emptyCol + 1], board[emptyRow, emptyCol]);
-
-                emptyCol++;
-            }
-
-            return true;
+            emptyRow--;
         }
-        return false;
+        else if (direction == Direction.Down)
+        {
+            (board[emptyRow, emptyCol], board[emptyRow + 1, emptyCol]) =
+                (board[emptyRow + 1, emptyCol], board[emptyRow, emptyCol]);
+
+            emptyRow++;
+        }
+        else if (direction == Direction.Left)
+        {
+            (board[emptyRow, emptyCol], board[emptyRow, emptyCol - 1]) =
+                (board[emptyRow, emptyCol - 1], board[emptyRow, emptyCol]);
+
+            emptyCol--;
+        }
+        else if (direction == Direction.Right)
+        {
+            (board[emptyRow, emptyCol], board[emptyRow, emptyCol + 1]) =
+                (board[emptyRow, emptyCol + 1], board[emptyRow, emptyCol]);
+
+            emptyCol++;
+        }
     }
 
     private bool IsSolved(int[] tempArr)
