@@ -17,7 +17,7 @@ internal class ClassicGameModeAction : GameAction
 
     public override void Execute()
     {
-        var game = new Game();
-        game.Run(_boardCreator.CreateBoard(), settings!, scoreStorage!, GameMode.Classic);
+        var game = new Game(_boardCreator.CreateBoard(), settings!, scoreStorage!);
+        game.Run(GameMode.Classic);
     }
 }

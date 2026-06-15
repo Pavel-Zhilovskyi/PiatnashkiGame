@@ -4,7 +4,7 @@ namespace PiatnashkiGame.Printers;
 
 static class BoardPrinter
 {
-    public static void ShowBoard(Board board)
+    public static void PrintBoard(Board board)
     {
         Console.WriteLine();
         for (int i = 0; i < board.Rows; i++)

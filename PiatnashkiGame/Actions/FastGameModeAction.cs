@@ -17,7 +17,7 @@ internal class FastGameModeAction : GameAction
 
     public override void Execute()
     {
-        var game = new Game();
-        game.Run(_boardCreator.CreateBoard(), settings!, scoreStorage!, GameMode.FastGame);
+        var game = new Game(_boardCreator.CreateBoard(), settings!, scoreStorage!);
+        game.Run(GameMode.FastGame);
     }
 }

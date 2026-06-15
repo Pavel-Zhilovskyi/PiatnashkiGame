@@ -1,39 +1,44 @@
-﻿using System.Diagnostics;
+﻿using PiatnashkiGame.Converter;
 using PiatnashkiGame.Enums;
-using PiatnashkiGame.Points;
-using PiatnashkiGame.Converter;
-using PiatnashkiGame.Handler;
 using PiatnashkiGame.Field;
-using PiatnashkiGame.Printers;
+using PiatnashkiGame.Handler;
 using PiatnashkiGame.Options;
+using PiatnashkiGame.Points;
+using PiatnashkiGame.Printers;
 using PiatnashkiGame.Storages;
+using System.Diagnostics;
 
 namespace PiatnashkiGame.Gaming;
 
 internal class Game
 {
-    private int movesCount;
-    private bool isFirstMove;
+    Board board;
 
-    public Game()
+    Settings settings;
+
+    IScoreStorage storage;
+
+    public Game(Board board, Settings settings, IScoreStorage storage)
     {
-        movesCount = 0;
-        isFirstMove = true;
+        this.board = board;
+        this.settings = settings;
+        this.storage = storage;
     }
 
-    public void Run(Board board, Settings settings, IScoreStorage scoreStorage, GameMode mode)
+    private GameSession InitializeGame(string playerName, GameMode mode)
     {
-        string playerName = InputHandler.ReadNameInput();
+        return new GameSession(playerName, mode);
+    }
+
+    private GameResult RunGameLoop(TimeSpan timerLimit, Stopwatch stopwatch, GameSession session)
+    {
         ConsoleKeyInfo keyInfo;
-        TimeSpan timerLimit = settings.GetGameTimerMode(mode);
 
-        Stopwatch stopwatch = new Stopwatch();
-
-        while(stopwatch.Elapsed < timerLimit)
+        while (stopwatch.Elapsed < timerLimit)
         {
             TimeSpan timeLeft = timerLimit - stopwatch.Elapsed;
 
-            GamePrinter.DrawGameScreen(timeLeft, board, settings, movesCount);
+            GamePrinter.PrintGameScreen(timeLeft, board, settings, session.MovesCount);
 
             if (Console.KeyAvailable)
             {
@@ -41,38 +46,28 @@ internal class Game
 
                 if (keyInfo.Key == ConsoleKey.Q)
                 {
-                    stopwatch.Stop();
-                    HandleGiveUp(stopwatch);
-                    return;
+                    return GameResult.GiveUp;
                 }
 
                 Direction? direction = KeyInputConverter.ConvertKey(keyInfo, settings);
 
-                if (direction != null) {
+                if (direction != null)
+                {
                     if (board.CanMove(direction))
                     {
                         board.MoveEmptyTile(direction);
-                        
-                        if (isFirstMove)
+
+                        if (session.IsFirstMove)
                         {
                             stopwatch.Start();
-                            SetIsFirstMoveFalse();
+                            session.RegisterFirstMove();
                         }
 
-                        InreaseMovesCount();
+                        session.IncrementMovesCount();
 
                         if (board.IsSolved())
                         {
-                            stopwatch.Stop();
-
-                            Score score = new Score(playerName, stopwatch.Elapsed, mode);
-
-                            scoreStorage.Save(score);
-
-                            Console.Clear();
-                            BoardPrinter.ShowBoard(board);
-                            GameResultPrinter.PrintGameWinMessage(stopwatch.Elapsed, movesCount);
-                            return;
+                            return GameResult.Win;
                         }
                     }
                     else
@@ -83,21 +78,42 @@ internal class Game
             }
             Thread.Sleep(30);
         }
-        GameResultPrinter.PrintTimeOutMessage();
+        return GameResult.TimeOut;
     }
 
-    private void InreaseMovesCount()
+    public void Run(GameMode mode)
     {
-        movesCount++;
-    }
+        string playerName = InputHandler.ReadNameInput();
 
-    private void SetIsFirstMoveFalse()
-    {
-        isFirstMove = false;
-    }
+        var session = InitializeGame(playerName, mode);
+        
+        TimeSpan timerLimit = settings.GetGameTimerMode(mode);
 
-    private static void HandleGiveUp(Stopwatch stopwatch)
-    {
-        GameResultPrinter.PrintGiveUpMessage();
+        Stopwatch stopwatch = new Stopwatch();
+
+        GameResult result = RunGameLoop(timerLimit, stopwatch, session);
+
+        stopwatch.Stop();
+
+        switch (result)
+        {
+            case GameResult.Win:
+                Score score = new Score(session.PlayerName, stopwatch.Elapsed, session.Mode);
+
+                storage.Save(score);
+
+                Console.Clear();
+                BoardPrinter.PrintBoard(board);
+                GameResultPrinter.PrintGameWinMessage(stopwatch.Elapsed, session.MovesCount);
+                break;
+            
+            case GameResult.TimeOut:
+                GameResultPrinter.PrintTimeOutMessage();
+                break;
+
+            case GameResult.GiveUp:
+                GameResultPrinter.PrintGiveUpMessage();
+                break;
+        }
     }
 }
