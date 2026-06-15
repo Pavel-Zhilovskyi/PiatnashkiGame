@@ -13,7 +13,7 @@ internal class SettingsStorage : ISettingsStorage
     public SettingsStorage()
     {
         filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
-            "PiatnashkiGameSettings", "Settings");
+            SettingsStorageConstants.SettingsFileName, SettingsStorageConstants.SettingsFileExtension);
     }
 
     public Settings Load()
@@ -32,7 +32,7 @@ internal class SettingsStorage : ISettingsStorage
         {
             parts = lines[i].Split('=');
 
-            if(parts.Length != 2)
+            if(parts.Length != SettingsStorageConstants.ValidSettingsLineLength)
             {
                 continue;
             }

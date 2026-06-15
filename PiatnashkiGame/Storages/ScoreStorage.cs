@@ -13,7 +13,7 @@ internal class ScoreStorage : IScoreStorage
     public ScoreStorage()
     {
         filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
-            "PiatnashkiGameScore", "Score");
+            ScoreStorageConstants.ScoreFileName, ScoreStorageConstants.ScoreFileExtension);
     }
 
     private string PrepareScoreToWrite(Score score)
@@ -44,7 +44,7 @@ internal class ScoreStorage : IScoreStorage
         {
             parts = line.Split(';');
 
-            if (parts.Length != 3)
+            if (parts.Length != ScoreStorageConstants.ValidScoreLineLength)
             {
                 continue;
             } 

@@ -41,6 +41,7 @@ internal class Game
 
                 if (keyInfo.Key == ConsoleKey.Q)
                 {
+                    stopwatch.Stop();
                     HandleGiveUp(stopwatch);
                     return;
                 }
@@ -97,7 +98,6 @@ internal class Game
 
     private static void HandleGiveUp(Stopwatch stopwatch)
     {
-        stopwatch.Stop();
         GameResultPrinter.PrintGiveUpMessage();
     }
 }
