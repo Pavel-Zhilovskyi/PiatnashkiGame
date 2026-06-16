@@ -11,7 +11,7 @@ internal class GameSession
 
     public GameMode Mode { get; }
 
-    public bool IsFirstMove {  get; private set; }
+    public bool IsFirstMove { get; private set; }
 
     public GameSession(string playerName, GameMode mode)
     {
