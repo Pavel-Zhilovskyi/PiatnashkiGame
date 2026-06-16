@@ -6,72 +6,25 @@ namespace PiatnashkiGame.Storages;
 
 internal class SettingsStorage : ISettingsStorage
 {
-    private readonly string filePath;
-
-    private readonly SafeFileHelper safeFileHelper = new SafeFileHelper();
-
-    public SettingsStorage()
-    {
-        filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
+    private readonly string _filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
             SettingsStorageConstants.SettingsFileName, SettingsStorageConstants.SettingsFileExtension);
-    }
+
+    private readonly SafeFileHelper _safeFileHelper = new SafeFileHelper();
+
+    private readonly SettingsFormer _settingsFormer = new SettingsFormer();
 
     public Settings Load()
     {
-        if (!safeFileHelper.IsExists(filePath))
+        if (!_safeFileHelper.IsExists(_filePath))
         {
             return new Settings();
         }
 
-        string[] lines = safeFileHelper.ReadAllLines(filePath);
-        string[] parts;
-
-        Settings settings = new Settings();
-
-        for (int i = 0; i < lines.Length; i++) 
-        {
-            parts = lines[i].Split('=');
-
-            if(parts.Length != SettingsStorageConstants.ValidSettingsLineLength)
-            {
-                continue;
-            }
-            switch (parts[0])
-            {
-                case Constants.Controls:
-                    if (Enum.TryParse(parts[1], true, out ControlsSettings controls))
-                    {
-                        settings.KeyControls = controls;
-                    }
-                    break;
-
-                case Constants.Time4x4:
-                    if (TimeSpan.TryParse(parts[1], out TimeSpan time))
-                    {
-                        settings.Time4x4 = time;
-                    }
-                    break;
-
-                case Constants.Time3x3:
-                    if (TimeSpan.TryParse(parts[1], out TimeSpan timer))
-                    {
-                        settings.Time3x3 = timer;
-                    }
-                    break;
-            }
-        }
-        return settings;
-    }
-
-    private string PrepareSettingsToWrite(Settings settings)
-    {
-        return "Controls=" + settings.KeyControls.ToString() + "\n" + "Time4x4=" +
-            settings.Time4x4.ToString(@"hh\:mm\:ss") + "\n" + "Time3x3=" + 
-                settings.Time3x3.ToString(@"hh\:mm\:ss");
+        return _settingsFormer.Form(_safeFileHelper.ReadAllLines(_filePath));
     }
 
     public void Save(Settings settings)
     {
-        safeFileHelper.Write(filePath, PrepareSettingsToWrite(settings) + "\n");
+        _safeFileHelper.Write(_filePath, _settingsFormer.DeForm(settings) + "\n");
     }
 }
