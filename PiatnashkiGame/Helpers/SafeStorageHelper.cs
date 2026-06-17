@@ -1,8 +1,8 @@
 ﻿namespace PiatnashkiGame.Helpers;
 
-internal class SafeFileHelper
+static class SafeFileHelper
 {
-    private void SafeExecute(Action action)
+    private static void SafeExecute(Action action)
     {
         try
         {
@@ -14,7 +14,7 @@ internal class SafeFileHelper
         }
     }
     
-    public void Append(string path, string text)
+    public static void Append(string path, string text)
     {
         SafeExecute(() =>
         {
@@ -23,7 +23,7 @@ internal class SafeFileHelper
             
     }
 
-    public void Write(string path, string text)
+    public static void Write(string path, string text)
     {
         SafeExecute(() =>
         {
@@ -31,15 +31,12 @@ internal class SafeFileHelper
         });
     }
 
-    public void Clear(string path)
+    public static void Clear(string path)
     {
-        SafeExecute(() =>
-        {
-            File.WriteAllText(path, string.Empty);
-        });
+        Write(path, string.Empty);
     }
 
-    public string[] ReadAllLines(string path)
+    public static string[] ReadAllLines(string path)
     {
         string[] lines = Array.Empty<string>();
         try
@@ -55,7 +52,7 @@ internal class SafeFileHelper
         return lines;
     }
 
-    public bool IsExists(string path)
+    public static bool IsExists(string path)
     {
         return File.Exists(path);
     }

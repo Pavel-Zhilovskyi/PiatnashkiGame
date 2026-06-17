@@ -31,34 +31,36 @@ class GameMenu : IMenu
 
         ConsoleKeyInfo keyInfo;
 
-        keyInfo = Console.ReadKey(true);
-
-        switch (keyInfo.Key)
+        while(true)
         {
-            case ConsoleKey.D1:
-                return new ClassicGameModeAction(_settings, _scoreStorage, _classicBoardCreator);
+            keyInfo = Console.ReadKey(true);
 
-            case ConsoleKey.D2:
-                return new FastGameModeAction(_settings, _scoreStorage, _fastBoardCreator);
+            switch (keyInfo.Key)
+            {
+                case ConsoleKey.D1:
+                    return new ClassicGameModeAction(_settings, _scoreStorage, _classicBoardCreator);
 
-            case ConsoleKey.D3:
-                return new ScoreboardAction(_scoreStorage);
+                case ConsoleKey.D2:
+                    return new FastGameModeAction(_settings, _scoreStorage, _fastBoardCreator);
 
-            case ConsoleKey.D4:
-                return new RulesAction();
+                case ConsoleKey.D3:
+                    return new ScoreboardAction(_scoreStorage);
 
-            case ConsoleKey.D5:
-                return new SettingsAction(_settings, _settingsStorage);
+                case ConsoleKey.D4:
+                    return new RulesAction();
 
-            case ConsoleKey.Escape:
-                Console.WriteLine("BYE!");
-                Environment.Exit(0);
-                return null;
+                case ConsoleKey.D5:
+                    return new SettingsAction(_settings, _settingsStorage);
 
-            default:
-                Console.Beep();
-                Console.Clear();
-                return null;
+                case ConsoleKey.Escape:
+                    Console.WriteLine("BYE!");
+                    Environment.Exit(0);
+                    return null;
+
+                default:
+                    Console.Beep();
+                    break;
+            }
         }
     }
 }

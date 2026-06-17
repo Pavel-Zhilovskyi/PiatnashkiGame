@@ -1,7 +1,7 @@
 ﻿
 using PiatnashkiGame.Enums;
 
-namespace PiatnashkiGame;
+namespace PiatnashkiGame.Gaming;
 
 internal class GameSession
 {

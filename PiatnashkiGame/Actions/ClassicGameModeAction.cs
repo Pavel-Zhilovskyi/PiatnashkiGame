@@ -13,6 +13,8 @@ internal class ClassicGameModeAction : GameAction
         : base(settings, scoreStorage) 
     {
         _boardCreator = boardCreator;
+
+        IsGameAction = true;
     }
 
     public override void Execute()

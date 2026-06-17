@@ -2,10 +2,12 @@
 using PiatnashkiGame.Options;
 using PiatnashkiGame.Printers;
 using PiatnashkiGame.Storages;
+using PiatnashkiGame.Gaming;
+using PiatnashkiGame.Enums;
 
 namespace PiatnashkiGame.Menues;
 
-internal class AfterGameMenu : IMenu
+internal class AfterGameMenu
 {
     private Settings _settings;
 
@@ -13,43 +15,45 @@ internal class AfterGameMenu : IMenu
 
     private ISettingsStorage _settingsStorage;
 
-    private IBoardCreator _boardCreator;
+    private IBoardCreator _classicBoardCreator;
+    private IBoardCreator _fastBoardCreator;
 
     public AfterGameMenu(Settings settings, IScoreStorage scoreStorage, ISettingsStorage settingsStorage,
-        IBoardCreator boardCreator)
+        IBoardCreator classicBoardCreator, IBoardCreator fastBoardCreator)
     {
         _settings = settings;
         _scoreStorage = scoreStorage;
         _settingsStorage = settingsStorage;
-        _boardCreator = boardCreator;
+        _classicBoardCreator = classicBoardCreator;
+        _fastBoardCreator = fastBoardCreator;
     }
 
-    public GameAction? Run()
+    public AfterGameChoice Run(GameAction gameAction)
     {
         MenuPrinter.PrintAfterGameMenu();
 
         ConsoleKeyInfo keyInfo;
 
-        keyInfo = Console.ReadKey(true);
-
-        switch (keyInfo.Key)
+        while(true)
         {
-            case ConsoleKey.R:
-                return null;
+            keyInfo = Console.ReadKey(true);
 
-            case ConsoleKey.M:
-                Console.Clear();
-                return null;
+            switch (keyInfo.Key)
+            {
+                case ConsoleKey.R:
+                    return AfterGameChoice.PlayAgain;
 
-            case ConsoleKey.Q:
-                Console.WriteLine("\nBYE!");
-                break;
+                case ConsoleKey.M:
+                    Console.Clear();
+                    return AfterGameChoice.MainMenu;
 
-            default:
-                Console.Beep();
-                break;
+                case ConsoleKey.Q:
+                    return AfterGameChoice.QuitProgram;
+
+                default:
+                    Console.Beep();
+                    break;
+            }
         }
-
-        return null;
     }
 }
