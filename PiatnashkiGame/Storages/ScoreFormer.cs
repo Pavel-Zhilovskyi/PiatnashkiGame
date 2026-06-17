@@ -5,10 +5,8 @@ namespace PiatnashkiGame.Storages;
 
 internal class ScoreFormer
 {
-    public string DeForm(Score score)
-    {
-        return score.Name + ";" + score.Time.ToString(@"hh\:mm\:ss") + ";" + score.Mode.ToString();
-    }
+    public string DeForm(Score score) => score.Name + ";" 
+        + score.Time.ToString(@"hh\:mm\:ss") + ";" + score.Mode.ToString();
 
     public Score? Form(string line)
     {

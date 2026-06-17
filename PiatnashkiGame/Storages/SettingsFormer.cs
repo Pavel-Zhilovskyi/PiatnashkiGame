@@ -5,12 +5,9 @@ namespace PiatnashkiGame.Storages;
 
 internal class SettingsFormer
 {
-    public string DeForm(Settings settings)
-    {
-        return Constants.Controls + "=" + settings.KeyControls.ToString() + "\n" +
-               Constants.Time4x4 + "=" + settings.Time4x4.ToString(@"hh\:mm\:ss") + "\n" +
-               Constants.Time3x3 + "=" + settings.Time3x3.ToString(@"hh\:mm\:ss");
-    }
+    public string DeForm(Settings settings) => Constants.Controls + "=" + settings.KeyControls.ToString() + "\n" +
+                                               Constants.Time4x4 + "=" + settings.Time4x4.ToString(@"hh\:mm\:ss") + "\n" +
+                                               Constants.Time3x3 + "=" + settings.Time3x3.ToString(@"hh\:mm\:ss");
 
     public Settings Form(string[] lines)
     {

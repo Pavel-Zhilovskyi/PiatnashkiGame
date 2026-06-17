@@ -16,19 +16,13 @@ static class SafeFileHelper
     
     public static void Append(string path, string text)
     {
-        SafeExecute(() =>
-        {
-            File.AppendAllText(path, text);
-        });
+        SafeExecute(() => File.AppendAllText(path, text));
             
     }
 
     public static void Write(string path, string text)
     {
-        SafeExecute(() =>
-        {
-            File.WriteAllText(path, text);
-        });
+        SafeExecute(() => File.WriteAllText(path, text));
     }
 
     public static void Clear(string path)

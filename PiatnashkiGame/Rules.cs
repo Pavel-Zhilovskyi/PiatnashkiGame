@@ -16,8 +16,5 @@ internal class Rules
         "The game ends when all tiles are arranged in the correct order."
         ];
 
-    public string GetRules(int index)
-    {
-        return rules[index];
-    }
+    public string GetRules(int index) => rules[index];
 }

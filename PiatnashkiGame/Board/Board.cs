@@ -40,7 +40,7 @@ public class Board
         do
         {
             Random.Shared.Shuffle(tempArr);
-        } while (!IsSolvable(tempArr) || IsSolved(tempArr));
+        } while (!BoardValidator.IsSolvable(tempArr, rows, cols) || BoardValidator.IsSolved(tempArr, solvedBoard));
 
         board = new int[rows, cols];
 
@@ -58,46 +58,6 @@ public class Board
     public int GetValue(int row, int col)
     {
         return board[row, col];
-    }
-
-    private bool IsSolvable(int[] tempArr)
-    {
-        int inversionCount = 0;
-
-        for (int i = 0; i < tempArr.Length; i++)
-        {
-            for (int j = i + 1; j < tempArr.Length; j++)
-            {
-                if (tempArr[i] != 0 && tempArr[j] != 0)
-                {
-                    if (tempArr[i] > tempArr[j])
-                    {
-                        inversionCount++;
-                    }
-                }
-            }
-        }
-
-        if (Rows == 4 && Cols == 4)
-        {
-            int emptyTileIndex = Array.IndexOf(tempArr, 0);
-
-            int rowFromTop = emptyTileIndex / Rows;
-
-            int rowFromBottom = Rows - rowFromTop;
-
-            if ((inversionCount % 2) != (rowFromBottom % 2))
-            {
-                return true;
-            }
-            return false;
-        }
-            
-        if (inversionCount % 2 == 0)
-        {
-            return true;
-        }
-        return false;
     }
 
     private void FindEmptyTile()
@@ -119,9 +79,9 @@ public class Board
     public bool CanMove(Direction? direction)
     {
         if ((direction == Direction.Up && emptyRow > 0) ||
-            (direction == Direction.Down && emptyRow >= 0 && emptyRow < Rows - 1) ||
+            (direction == Direction.Down && emptyRow < Rows - 1) ||
             (direction == Direction.Left && emptyCol > 0) ||
-            (direction == Direction.Right && emptyCol >= 0 && emptyCol < Cols - 1))
+            (direction == Direction.Right && emptyCol < Cols - 1))
         {
             return true;
         }
@@ -158,23 +118,6 @@ public class Board
 
             emptyCol++;
         }
-    }
-
-    private bool IsSolved(int[] tempArr)
-    {
-        int index = 0;
-
-        for (int i = 0; i < Rows; i++)
-        {
-            for (int j = 0; j < Cols; j++)
-            {
-                if (tempArr[index++] != solvedBoard[i, j])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     public bool IsSolved()
