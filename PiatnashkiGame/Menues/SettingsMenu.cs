@@ -20,7 +20,9 @@ internal class SettingsMenu : ISettingsMenu
         while (true)
         {
             Console.Clear();
+
             MenuPrinter.PrintSettingsMenu();
+
             keyInfo = Console.ReadKey(true);
 
             switch (keyInfo.Key)

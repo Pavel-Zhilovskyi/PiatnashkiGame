@@ -1,5 +1,4 @@
-﻿
-namespace PiatnashkiGame.Menues;
+﻿namespace PiatnashkiGame.Menues;
 
 interface ISettingsMenu
 {

@@ -16,4 +16,11 @@ static class RulesPrinter
             Thread.Sleep(200);
         }
     }
+
+    public static void PressAnyKeyToContinue()
+    {
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey(true);
+        Console.Clear();
+    }
 }

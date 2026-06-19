@@ -14,7 +14,7 @@ internal class ClassicGameModeAction : GameAction
     {
         _boardCreator = boardCreator;
 
-        IsGameAction = true;
+        IsPlayableAction = true;
     }
 
     public override void Execute()

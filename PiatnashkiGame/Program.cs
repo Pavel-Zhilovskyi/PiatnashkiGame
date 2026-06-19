@@ -27,7 +27,7 @@ class Program
         {
             game.Execute();
 
-            if (game.IsGameAction)
+            if (game.IsPlayableAction)
             {
                 var choice = afterGameMenu.Run(game);
 

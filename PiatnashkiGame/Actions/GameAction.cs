@@ -5,7 +5,7 @@ namespace PiatnashkiGame.Actions;
 
 internal abstract class GameAction
 {
-    public virtual bool IsGameAction { get; protected set; }
+    public virtual bool IsPlayableAction { get; protected set; }
 
     protected readonly Settings? settings;
     protected readonly IScoreStorage? scoreStorage;
