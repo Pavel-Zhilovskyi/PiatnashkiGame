@@ -3,7 +3,7 @@ using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
 
-internal class ScoreMenu : IScoreMenu
+internal class ScoreMenu : IMenu
 {
     private readonly IScoreStorage _storage;
 

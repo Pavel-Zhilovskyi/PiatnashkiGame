@@ -2,12 +2,12 @@
 
 namespace PiatnashkiGame.Menues;
 
-internal class SettingsMenu : ISettingsMenu
+internal class SettingsMenu : IMenu
 {
-    private readonly IControlsOptions _controlsOption;
-    private readonly ITimerOptions _timerOption;
+    private readonly IMenu _controlsOption;
+    private readonly IMenu _timerOption;
 
-    public SettingsMenu(IControlsOptions controlsOption, ITimerOptions timerOption)
+    public SettingsMenu(IMenu controlsOption, IMenu timerOption)
     {
         _controlsOption = controlsOption;
         _timerOption = timerOption;

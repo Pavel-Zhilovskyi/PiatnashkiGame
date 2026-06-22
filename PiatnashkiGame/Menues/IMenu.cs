@@ -1,8 +1,6 @@
-﻿using PiatnashkiGame.Actions;
-
-namespace PiatnashkiGame.Menues;
+﻿namespace PiatnashkiGame.Menues;
 
 interface IMenu
 {
-    GameAction? Run();
+    void Run();
 }

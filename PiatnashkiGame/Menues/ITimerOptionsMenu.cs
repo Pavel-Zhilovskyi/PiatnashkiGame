@@ -1,6 +1,6 @@
 ﻿namespace PiatnashkiGame.Menues;
 
-interface ITimerOptions
+interface ITimerOptionsMenu
 {
     void Run();
 }

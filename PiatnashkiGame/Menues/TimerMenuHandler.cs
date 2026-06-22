@@ -4,7 +4,7 @@ using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
 
-internal class TimerMenuHandler : ITimerOptions
+internal class TimerMenuHandler : IMenu
 {
     private readonly Settings _settings;
     private readonly ITimerChangeble _timer4x4;

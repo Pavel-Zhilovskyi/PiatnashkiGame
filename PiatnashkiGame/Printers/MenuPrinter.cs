@@ -11,7 +11,7 @@ static class MenuPrinter
         Console.WriteLine("4 - See rules");
         Console.WriteLine("5 - Settings");
         Console.WriteLine("Esc - Exit");
-        Console.WriteLine("Press the key to choose.\n");
+        Console.WriteLine("Press the key to choose.");
     }
 
     public static void PrintAfterGameMenu()

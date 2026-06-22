@@ -4,7 +4,7 @@ using PiatnashkiGame.Printers;
 using PiatnashkiGame.Storages;
 
 namespace PiatnashkiGame.Menues;
-class GameMenu : IMenu
+class GameMenu : IMainMenu
 {
     private Settings _settings;
 

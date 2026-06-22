@@ -8,7 +8,7 @@ internal class InputHandler
 
         do
         {
-            Console.Write("Enter your nickname: ");
+            Console.Write("\nEnter your nickname: ");
             name = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(name) || name.Contains(InputHandlerConstants.InvalidNameSeparator))

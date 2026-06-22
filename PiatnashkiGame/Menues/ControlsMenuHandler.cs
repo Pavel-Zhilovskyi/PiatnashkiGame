@@ -5,7 +5,7 @@ using PiatnashkiGame.Options;
 
 namespace PiatnashkiGame.Menues;
 
-internal class ControlsMenuHandler : IControlsOptions
+internal class ControlsMenuHandler : IMenu
 {
     private readonly Settings _settings;
 
