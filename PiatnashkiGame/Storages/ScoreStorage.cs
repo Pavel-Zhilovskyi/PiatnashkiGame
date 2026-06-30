@@ -3,7 +3,7 @@ using PiatnashkiGame.Helpers;
 
 namespace PiatnashkiGame.Storages;
 
-internal class ScoreStorage : IScoreStorage
+internal class ScoreStorage
 {
     private string _filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
             ScoreStorageConstants.ScoreFileName, ScoreStorageConstants.ScoreFileExtension);

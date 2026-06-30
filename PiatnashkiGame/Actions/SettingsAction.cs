@@ -6,7 +6,7 @@ namespace PiatnashkiGame.Actions;
 
 internal class SettingsAction : GameAction
 {
-    public SettingsAction(Settings settings, ISettingsStorage settingsStorage)
+    public SettingsAction(Settings settings, SettingsStorage settingsStorage)
         : base(settings, settingsStorage) {}
 
     public override void Execute()

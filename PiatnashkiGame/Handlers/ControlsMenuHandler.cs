@@ -9,9 +9,9 @@ internal class ControlsMenuHandler : IMenu
 {
     private readonly Settings _settings;
 
-    private readonly ISettingsStorage _storage;
+    private readonly SettingsStorage _storage;
 
-    public ControlsMenuHandler(Settings settings, ISettingsStorage storage)
+    public ControlsMenuHandler(Settings settings, SettingsStorage storage)
     {
         _settings = settings;
         _storage = storage;

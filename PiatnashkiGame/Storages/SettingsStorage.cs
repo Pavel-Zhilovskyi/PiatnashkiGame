@@ -1,10 +1,9 @@
-﻿using PiatnashkiGame.Enums;
-using PiatnashkiGame.Helpers;
+﻿using PiatnashkiGame.Helpers;
 using PiatnashkiGame.Options;
 
 namespace PiatnashkiGame.Storages;
 
-internal class SettingsStorage : ISettingsStorage
+internal class SettingsStorage
 {
     private readonly string _filePath = FilePathHelper.CreateFilePath(AppDomain.CurrentDomain.BaseDirectory,
             SettingsStorageConstants.SettingsFileName, SettingsStorageConstants.SettingsFileExtension);

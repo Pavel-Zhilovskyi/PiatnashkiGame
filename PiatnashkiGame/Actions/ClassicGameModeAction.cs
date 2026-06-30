@@ -7,9 +7,9 @@ namespace PiatnashkiGame.Actions;
 
 internal class ClassicGameModeAction : GameAction
 {
-    private IBoardCreator _boardCreator;
+    private BoardCreator _boardCreator;
 
-    public  ClassicGameModeAction(Settings settings, IScoreStorage scoreStorage, IBoardCreator boardCreator)
+    public  ClassicGameModeAction(Settings settings, ScoreStorage scoreStorage, BoardCreator boardCreator)
         : base(settings, scoreStorage) 
     {
         _boardCreator = boardCreator;

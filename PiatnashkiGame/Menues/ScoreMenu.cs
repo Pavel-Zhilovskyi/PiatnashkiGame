@@ -5,9 +5,9 @@ namespace PiatnashkiGame.Menues;
 
 internal class ScoreMenu : IMenu
 {
-    private readonly IScoreStorage _storage;
+    private readonly ScoreStorage _storage;
 
-    public ScoreMenu(IScoreStorage storage)
+    public ScoreMenu(ScoreStorage storage)
     {
         _storage = storage;
     }

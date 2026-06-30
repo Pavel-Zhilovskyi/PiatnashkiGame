@@ -5,7 +5,7 @@ namespace PiatnashkiGame.Actions;
 
 internal class ScoreboardAction : GameAction
 {
-    public ScoreboardAction(IScoreStorage scoreStorage)
+    public ScoreboardAction(ScoreStorage scoreStorage)
         : base(scoreStorage) {}
 
     public override void Execute()

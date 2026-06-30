@@ -8,15 +8,15 @@ class GameMenu : IMainMenu
 {
     private Settings _settings;
 
-    private IScoreStorage _scoreStorage;
+    private ScoreStorage _scoreStorage;
 
-    private ISettingsStorage _settingsStorage;
+    private SettingsStorage _settingsStorage;
 
-    private IBoardCreator _classicBoardCreator;
-    private IBoardCreator _fastBoardCreator;
+    private BoardCreator _classicBoardCreator;
+    private BoardCreator _fastBoardCreator;
 
-    public GameMenu(Settings settings, IScoreStorage scoreStorage, ISettingsStorage settingsStorage, 
-        IBoardCreator classicBoardCreator, IBoardCreator fastBoardCreator)
+    public GameMenu(Settings settings, ScoreStorage scoreStorage, SettingsStorage settingsStorage, 
+        BoardCreator classicBoardCreator, BoardCreator fastBoardCreator)
     {
         _settings = settings;
         _scoreStorage = scoreStorage;

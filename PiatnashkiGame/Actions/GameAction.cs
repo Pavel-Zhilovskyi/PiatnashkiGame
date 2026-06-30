@@ -8,23 +8,23 @@ internal abstract class GameAction
     public virtual bool IsPlayableAction { get; protected set; }
 
     protected readonly Settings? settings;
-    protected readonly IScoreStorage? scoreStorage;
-    protected readonly ISettingsStorage? settingsStorage;
+    protected readonly ScoreStorage? scoreStorage;
+    protected readonly SettingsStorage? settingsStorage;
 
     protected GameAction() {}
 
-    protected GameAction(Settings settings, IScoreStorage storage)
+    protected GameAction(Settings settings, ScoreStorage storage)
     {
         this.settings = settings;
         scoreStorage = storage;
     }
 
-    protected GameAction(IScoreStorage? storage)
+    protected GameAction(ScoreStorage? storage)
     {
         scoreStorage = storage;
     }
 
-    protected GameAction(Settings settings, ISettingsStorage storage)
+    protected GameAction(Settings settings, SettingsStorage storage)
     {
         this.settings = settings;
         settingsStorage = storage;

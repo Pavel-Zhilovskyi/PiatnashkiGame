@@ -7,9 +7,9 @@ namespace PiatnashkiGame.Menues;
 internal class Timer3x3Handler : ITimerChangeble
 {
     private readonly Settings _settings;
-    private readonly ISettingsStorage _storage;
+    private readonly SettingsStorage _storage;
 
-    public Timer3x3Handler(Settings settings, ISettingsStorage storage)
+    public Timer3x3Handler(Settings settings, SettingsStorage storage)
     {
         _settings = settings;
         _storage = storage;

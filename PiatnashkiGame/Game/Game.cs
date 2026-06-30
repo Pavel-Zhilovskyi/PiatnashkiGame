@@ -16,9 +16,9 @@ internal class Game
 
     Settings settings;
 
-    IScoreStorage storage;
+    ScoreStorage storage;
 
-    public Game(Board board, Settings settings, IScoreStorage storage)
+    public Game(Board board, Settings settings, ScoreStorage storage)
     {
         this.board = board;
         this.settings = settings;

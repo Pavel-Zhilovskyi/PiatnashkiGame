@@ -7,9 +7,9 @@ namespace PiatnashkiGame.Actions;
 
 internal class FastGameModeAction : GameAction
 {
-    private IBoardCreator _boardCreator;
+    private BoardCreator _boardCreator;
 
-    public FastGameModeAction(Settings settings, IScoreStorage scoreStorage, IBoardCreator boardCreator)
+    public FastGameModeAction(Settings settings, ScoreStorage scoreStorage, BoardCreator boardCreator)
         : base(settings, scoreStorage)
     {
         _boardCreator = boardCreator;

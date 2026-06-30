@@ -2,7 +2,7 @@
 
 namespace PiatnashkiGame.Actions;
 
-internal class BoardCreator : IBoardCreator
+internal class BoardCreator
 {
     private readonly int _rows;
     private readonly int _cols;

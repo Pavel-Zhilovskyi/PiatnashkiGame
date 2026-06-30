@@ -9,14 +9,14 @@ class Program
 {
     static void Main()
     {
-        IScoreStorage scoreStorage = new ScoreStorage();
+        ScoreStorage scoreStorage = new ScoreStorage();
 
-        ISettingsStorage settignsStorage = new SettingsStorage();
+        var settignsStorage = new SettingsStorage();
 
         var settings = settignsStorage.Load();
 
-        IBoardCreator classicBoardCreator = new BoardCreator(BoardConstants.Size4x4, BoardConstants.Size4x4);
-        IBoardCreator fastBoardCreator = new BoardCreator(BoardConstants.Size3x3, BoardConstants.Size3x3);
+        BoardCreator classicBoardCreator = new BoardCreator(BoardConstants.Size4x4, BoardConstants.Size4x4);
+        BoardCreator fastBoardCreator = new BoardCreator(BoardConstants.Size3x3, BoardConstants.Size3x3);
 
         IMainMenu menu = new GameMenu(settings, scoreStorage, settignsStorage, classicBoardCreator, fastBoardCreator);
         var afterGameMenu = new AfterGameMenu();

@@ -26,6 +26,7 @@ internal class AfterGameMenu
                     return AfterGameChoice.MainMenu;
 
                 case ConsoleKey.Q:
+                    Console.Write("BYE!");
                     return AfterGameChoice.QuitProgram;
 
                 default:

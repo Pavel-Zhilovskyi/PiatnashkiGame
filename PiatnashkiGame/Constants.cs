@@ -1,6 +1,6 @@
 ﻿namespace PiatnashkiGame;
 
-public static class Constants
+public static class SettingsConstants
 {
     public const string Controls = "Controls";
     public const string Time4x4 = "Time4x4";

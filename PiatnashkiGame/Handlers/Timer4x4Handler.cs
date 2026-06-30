@@ -7,9 +7,9 @@ namespace PiatnashkiGame.Menues;
 internal class Timer4x4Handler : ITimerChangeble
 {
     private readonly Settings _settings;
-    private readonly ISettingsStorage _storage;
+    private readonly SettingsStorage _storage;
 
-    public Timer4x4Handler(Settings settings, ISettingsStorage storage)
+    public Timer4x4Handler(Settings settings, SettingsStorage storage)
     {
         _settings = settings;
         _storage = storage;
