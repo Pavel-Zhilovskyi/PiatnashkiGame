@@ -18,7 +18,7 @@ class Program
         BoardCreator classicBoardCreator = new BoardCreator(BoardConstants.Size4x4, BoardConstants.Size4x4);
         BoardCreator fastBoardCreator = new BoardCreator(BoardConstants.Size3x3, BoardConstants.Size3x3);
 
-        IMainMenu menu = new GameMenu(settings, scoreStorage, settignsStorage, classicBoardCreator, fastBoardCreator);
+        GameMenu menu = new GameMenu(settings, scoreStorage, settignsStorage, classicBoardCreator, fastBoardCreator);
         var afterGameMenu = new AfterGameMenu();
 
         var game = menu.Run();
